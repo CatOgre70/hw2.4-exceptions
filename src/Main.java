@@ -5,10 +5,12 @@ public class Main {
         // System.out.println(loginCheck("Vasily.Demin@gmail.com", "e3PC!@Xy", "e3PC!@Xy")); // WrongLoginException
         // System.out.println(loginCheck("Vasily.Demin", "e3PC!@Xy", "e3PC!@Xy_")); // WrongPasswordException
         System.out.println(loginCheck("Vasily.Demin", "e3PC!@Xy12ebo4v07k12", "e3PC!@Xy12ebo4v07k12"));
-        System.out.println(loginCheck("VasilyDemin", "e3PC!@Xy12ebo4v07k1", "e3PC!@Xy12ebo4v07k1"));
+        System.out.println(loginCheck("VasilyDemin", "e3PCXy12ebo4v07k1", "e3PCXy12ebo4v07k1"));
         System.out.println(loginCheck("vasily", "e3PC!@Xy", "e3PC!@Xy"));
         System.out.println(loginCheck("vasily", "e3PCXy1_", "e3PCXy1_"));
         System.out.println(loginCheck("vasily.d", "e3PCXy1_", "e3PCXy1_"));
+        System.out.println(loginCheck("", "e3PCXy1_", "e3PCXy1_"));
+        System.out.println(loginCheck("vasily", "", ""));
 
     }
 
@@ -29,6 +31,9 @@ public class Main {
 
     public static boolean nameCheck(String login){
 
+        if(login.isEmpty())
+            return false;
+
         if(login.length() > 20) {
             throw new WrongLoginException("Имя пользователя не должно превышать 20 символов!");
         }
@@ -39,11 +44,16 @@ public class Main {
 
     public static boolean passwordCheck(String password, String confirmPassword){
 
-        if(!password.equals(confirmPassword)){
+        if(password.isEmpty() || confirmPassword.isEmpty())
+            return false;
+
+
+        if(!password.equals(confirmPassword))
             throw new WrongPasswordException("Поля пароль и подтверждение пароля должны совпадать!");
-        }
+
         if(password.length() >= 20)
             return false;
+
         return isStringContainsRightSymbols(password);
 
     }
