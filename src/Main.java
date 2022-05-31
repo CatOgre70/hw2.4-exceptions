@@ -30,7 +30,7 @@ public class Main {
             throw new RuntimeException(e);
         }
 
-        return isPasswordCorrect & isLoginCorrect;
+        return isPasswordCorrect && isLoginCorrect;
     }
 
     public static boolean nameCheck(String login){
@@ -41,9 +41,9 @@ public class Main {
         if(login.isEmpty())
             return false;
 
-        if(login.length() > 20) {
+        if(login.length() > 20)
             throw new WrongLoginException("Имя пользователя не должно превышать 20 символов!");
-        }
+
 
         return Pattern.matches("\\w*", login);
 
@@ -56,7 +56,6 @@ public class Main {
 
         if(password.isEmpty())
             return false;
-
 
         if(!password.equals(confirmPassword))
             throw new WrongPasswordException("Поля пароль и подтверждение пароля должны совпадать!");
