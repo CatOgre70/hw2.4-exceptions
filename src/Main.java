@@ -6,13 +6,15 @@ public class Main {
 
         // System.out.println(loginCheck("Vasily.Demin@gmail.com", "e3PC!@Xy", "e3PC!@Xy")); // WrongLoginException
         // System.out.println(loginCheck("Vasily.Demin", "e3PC!@Xy", "e3PC!@Xy_")); // WrongPasswordException
-        System.out.println(loginCheck("Vasily.Demin", "e3PC!@Xy12ebo4v07k12", "e3PC!@Xy12ebo4v07k12"));
-        System.out.println(loginCheck("VasilyDemin", "e3PCXy12ebo4v07k1", "e3PCXy12ebo4v07k1"));
-        System.out.println(loginCheck("vasily", "e3PC!@Xy", "e3PC!@Xy"));
-        System.out.println(loginCheck("vasily", "e3PCXy1_", "e3PCXy1_"));
-        System.out.println(loginCheck("vasily.d", "e3PCXy1_", "e3PCXy1_"));
-        System.out.println(loginCheck(null, "e3PCXy1_", "e3PCXy1_"));
-        System.out.println(loginCheck("vasily", "", ""));
+        System.out.println(loginCheck("Vasily.Demin", "e3PC!@Xy12ebo4v07k12",
+                "e3PC!@Xy12ebo4v07k12")); // false
+        System.out.println(loginCheck("VasilyDemin", "e3PCXy12ebo4v07k1",
+                "e3PCXy12ebo4v07k1")); // true
+        System.out.println(loginCheck("vasily", "e3PC!@Xy", "e3PC!@Xy")); // false
+        System.out.println(loginCheck("vasily", "e3PCXy1_", "e3PCXy1_")); // true
+        System.out.println(loginCheck("vasily.d", "e3PCXy1_", "e3PCXy1_")); // false
+        System.out.println(loginCheck(null, "e3PCXy1_", "e3PCXy1_")); // false
+        System.out.println(loginCheck("vasily", "", "")); // false
 
     }
 
@@ -66,6 +68,7 @@ public class Main {
 
     }
 
+    // Unnecessary old style method without regular expressions
     public static boolean isStringContainsRightSymbols(String s){
 
         boolean correct = true;
