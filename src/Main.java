@@ -1,3 +1,5 @@
+import java.util.regex.Pattern;
+
 public class Main {
 
     public static void main(String[] args) {
@@ -9,7 +11,7 @@ public class Main {
         System.out.println(loginCheck("vasily", "e3PC!@Xy", "e3PC!@Xy"));
         System.out.println(loginCheck("vasily", "e3PCXy1_", "e3PCXy1_"));
         System.out.println(loginCheck("vasily.d", "e3PCXy1_", "e3PCXy1_"));
-        System.out.println(loginCheck("", "e3PCXy1_", "e3PCXy1_"));
+        System.out.println(loginCheck(null, "e3PCXy1_", "e3PCXy1_"));
         System.out.println(loginCheck("vasily", "", ""));
 
     }
@@ -31,6 +33,9 @@ public class Main {
 
     public static boolean nameCheck(String login){
 
+        if(login == null)
+            return false;
+
         if(login.isEmpty())
             return false;
 
@@ -38,13 +43,16 @@ public class Main {
             throw new WrongLoginException("Имя пользователя не должно превышать 20 символов!");
         }
 
-        return isStringContainsRightSymbols(login);
+        return Pattern.matches("\\w*", login);
 
     }
 
     public static boolean passwordCheck(String password, String confirmPassword){
 
-        if(password.isEmpty() || confirmPassword.isEmpty())
+        if(password == null || confirmPassword == null)
+            return false;
+
+        if(password.isEmpty())
             return false;
 
 
@@ -54,7 +62,7 @@ public class Main {
         if(password.length() >= 20)
             return false;
 
-        return isStringContainsRightSymbols(password);
+        return Pattern.matches("\\w*", password);
 
     }
 
@@ -69,6 +77,7 @@ public class Main {
             }
         }
         return correct;
+
     }
 
 }
